@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Admineventmanagement"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activitys.ScanQRActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activitys.SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

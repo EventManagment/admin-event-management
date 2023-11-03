@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">admineventmanagement</string>
+    <string name="splash_screen">Admin Event Management</string>
 </resources>

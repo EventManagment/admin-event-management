@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="@string/home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/scan"
+        android:enabled="true"
+        android:icon="@drawable/qr_code_scanner"
+        android:title="@string/qr_code_scanner"
+
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/user_profile"
+        android:enabled="true"
+        android:icon="@drawable/user_profile"
+        android:title="@string/user_profile"
+        app:showAsAction="always" />
+</menu>

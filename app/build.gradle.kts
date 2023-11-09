@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+//    id("androidx.navigation.safeargs.kotlin")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -33,9 +35,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
 }
 
 dependencies {
+    val nav_version = "2.7.5"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -46,5 +54,12 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 //    add dependency here
+    implementation("androidx.databinding:databinding-runtime:8.1.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+//    implementation ("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.5")
 
 }

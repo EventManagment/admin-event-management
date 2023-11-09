@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+  <data>
 
-    <TextView
-        android:layout_width="wrap_content"
+  </data>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
+        tools:layout="@layout/fragment_home"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        xmlns:app="http://schema.android.com/apk/res/res-auto"
+        android:id="@+id/navigation_bottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Main"
-        android:textSize="@dimen/font_size_splash_screen"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
-
-</RelativeLayout>
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav_bar"/>
+  </LinearLayout>
+</layout>

@@ -59,4 +59,6 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     // Feature module Support
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    // ML kits
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
 }

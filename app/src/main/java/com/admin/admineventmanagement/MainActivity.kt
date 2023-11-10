@@ -1,6 +1,5 @@
 package com.admin.admineventmanagement
 
-import android.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
@@ -22,41 +21,32 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-//        BottomNavigationView = binding.navigationBottom
         val navHostFragment =
-            supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
+                supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+//            supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
         navController = navHostFragment.navController
         binding.navigationBottom
             .setupWithNavController(navController)
 
-//        BottomNavigationView.onNavigationItemSelected  { item ->
-//            when(item.itemId) {
-//                R.id.item1 -> {
-//                    // Respond to navigation item 1 click
-//                    true
-//                }
-//                R.id.item2 -> {
-//                    // Respond to navigation item 2 click
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//        BottomNavigationView.onNavigationItemReselected { item ->
-//            when(item.itemId) {
-//                R.id.item1 -> {
-//                    // Respond to navigation item 1 reselection
-//                }
-//                R.id.item2 -> {
-//                    // Respond to navigation item 2 reselection
-//                }
-//            }
-//        }
+        binding.navigationBottom.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.home -> {
+                    navController.navigate(R.id.homeFragment)
+                    true
+                }
+                R.id.qr_code_scanner -> {
+                    navController.navigate(R.id.scanFragment)
+                    true
+                }
+                R.id.user_profile -> {
+                    navController.navigate(R.id.userProfileFragment)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.bottom_nav_bar, menu)
-//        return true
-//    }
 }

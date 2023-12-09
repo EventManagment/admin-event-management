@@ -8,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.admin.admineventmanagement.R
 import com.admin.admineventmanagement.databinding.FragmentScanBinding
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.mlkit.vision.barcode.BarcodeScanner
@@ -21,6 +25,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 /**
  * A simple [Fragment] subclass.
@@ -45,6 +50,8 @@ class ScanFragment : Fragment() {
     private lateinit var cameraPreview: Preview
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var barcodeScanner: BarcodeScanner
+    private lateinit var camera: Camera
+    private lateinit var qrImage: PreviewView
 
     companion object {
         const val CAMERA_PERMISSION_REQUEST_CODE = 100
@@ -61,41 +68,8 @@ class ScanFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentScanBinding.inflate(inflater, container, false)
 
-
-//        cameraSelector = cameraSelector.Builder()
-//            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-//            .build()
-//        cameraSelector = CameraSelector.Builder()
-//            .requireLensFacing(LENS_FACING_BACK)
-//            .build()
-
-//        cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-//        cameraProviderFuture.addListener(
-//            {
-//                processCameraProvider = cameraProviderFuture.get()
-//                bindCameraPreview()
-//            },
-//            ContextCompat.getMainExecutor(requireContext())
-//        )
-//        barcode scanner
-//        val barcodeScanner: BarcodeScanner = BarcodeScanning.getClient(
-//            BarcodeScannerOptions.Builder()
-//                .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-//                .build()
-//        )
-//      image analyze
-//        val imageAnalyze = ImageAnalysis.Builder()
-//            .setTargetRotation(rotation)
-//            .build()
-
         return binding.root
     }
-
-//    private fun bindCameraPreview() {
-//        cameraPreview = Preview.Builder().build()
-//        cameraPreview.setSurfaceProvider(getSurfaceProvider())
-//        processCameraProvider.bindToLifecycle(this, cameraSelector, cameraPreview)
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -109,6 +83,9 @@ class ScanFragment : Fragment() {
 //                    .build())
             .build()
         barcodeScanner = BarcodeScanning.getClient(options)
+
+        // Initialize camera executor
+        cameraExecutor = Executors.newSingleThreadExecutor()
 
         // Check camera permission
         if (ContextCompat.checkSelfPermission(
@@ -132,7 +109,45 @@ class ScanFragment : Fragment() {
         }
 
     private fun startCamera() {
-        // TODO: Initialize camera preview and start scanning
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+            qrImage = requireView().findViewById(R.id.qr_image)
+
+            val preview = Preview.Builder()
+                .build()
+                .also {
+                    it.setSurfaceProvider(qrImage.surfaceProvider)
+                }
+
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            // Set up the barcodeScanner
+            val imageAnalysis = ImageAnalysis.Builder()
+                .build()
+                .also {
+                    it.setAnalyzer(cameraExecutor, { imageProxy ->
+                        val mediaImage = imageProxy.image
+                        if (mediaImage != null) {
+                            val inputImage = InputImage.fromMediaImage(
+                                mediaImage,
+                                imageProxy.imageInfo.rotationDegrees
+                            )
+                            startScanning(inputImage)
+                        }
+                        imageProxy.close()
+                    })
+                }
+
+            camera = cameraProvider.bindToLifecycle(
+                this,
+                cameraSelector,
+                preview,
+                imageAnalysis
+            )
+
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
     // Call this method to process the scanned QR code

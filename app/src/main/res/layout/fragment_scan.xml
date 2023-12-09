@@ -21,7 +21,7 @@
                 android:textAlignment="center"
         />
 
-        <ImageView
+        <androidx.camera.view.PreviewView
                 android:id="@+id/qr_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"

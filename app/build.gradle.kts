@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.admin.admineventmanagement"
-        minSdk = 29
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,4 +66,8 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.3.0")
     implementation("androidx.camera:camera-view:1.3.0")
     implementation("androidx.camera:camera-core:1.3.0")
+    // Anychart
+    implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
+//    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 }

@@ -33,21 +33,9 @@ import java.util.concurrent.Executors
  * create an instance of this fragment.
  */
 class ScanFragment : Fragment() {
-//    companion object {
-//        private val TAG = ScanFragment::class.simpleName
-//        private var onScan: ((barcodes: List<Barcode>) -> Unit)? = null
-//        fun startScanner(context: Context) {
-//
-//        }
-//    }
-
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
-    private lateinit var cameraSelector: CameraSelector
-    private lateinit var processCameraProvider: ProcessCameraProvider
-    private lateinit var cameraPreview: Preview
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var barcodeScanner: BarcodeScanner
     private lateinit var camera: Camera
@@ -110,6 +98,7 @@ class ScanFragment : Fragment() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+        Log.d("QRScanFragment", "Scanned QR Code")
 
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
@@ -155,7 +144,7 @@ class ScanFragment : Fragment() {
         // TODO: Handle the scanned QR code data
         val qrCodeData = barcode.displayValue
         Log.d("QRScanFragment", "Scanned QR Code: $qrCodeData")
-
+        binding.result.text = qrCodeData
         // Navigate or perform further actions based on the scanned data
         // For example, you can use findNavController().navigate(...) to navigate to another fragment
     }

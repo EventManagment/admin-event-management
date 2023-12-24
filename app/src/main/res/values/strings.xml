@@ -7,4 +7,5 @@
   <string name="qr_code_scanner">Scan</string>
   <string name="user_profile">Account</string>
     <string name="qr_code">QR Code Scan</string>
+  <string name="attendance">Attendance</string>
 </resources>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="font_size_splash_screen">25sp</dimen>
+    <dimen name="font_size_20_sp">20sp</dimen>
+    <dimen name="card_height">300dp</dimen>
+    <dimen name="card_height_100">100dp</dimen>
 </resources>

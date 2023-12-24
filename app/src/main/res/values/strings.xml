@@ -8,4 +8,12 @@
   <string name="user_profile">Account</string>
     <string name="qr_code">QR Code Scan</string>
   <string name="attendance">Attendance</string>
+  <string name="ok">OK</string>
+  <string name="error">Error</string>
+  <string name="camera_permission">Camera Permission Denied</string>
+  <string name="scan_error">Play Scan again</string>
+  <string name="scan_success">Scan Success %s</string>
+  <string name="cancel">Cancel</string>
+  <string name="success">Success</string>
+  <string name="profile">Profile</string>
 </resources>

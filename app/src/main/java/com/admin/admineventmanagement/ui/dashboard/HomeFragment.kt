@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.admin.admineventmanagement.databinding.FragmentHomeBinding
+import com.admin.admineventmanagement.viewmodel.ManagementViewModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.*
@@ -20,6 +22,8 @@ import com.github.mikephil.charting.data.*
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
+    private val viewModel: ManagementViewModel by viewModels()
+
     private lateinit var pieChart: PieChart
     protected var tfRegular: Typeface? = null
     protected var tfLight: Typeface? = null

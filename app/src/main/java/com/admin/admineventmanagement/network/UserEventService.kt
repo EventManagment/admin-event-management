@@ -8,7 +8,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL =
-    "https://android-kotlin-fun-mars-server.appspot.com"
+    "https://jsonplaceholder.typicode.com"
+//    "https://android-kotlin-fun-mars-server.appspot.com"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -19,11 +20,11 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface UserEventService {
-    @GET("photos")
-    suspend fun getPhotos() : List<UserEvent>
+interface UserEventApiService {
+    @GET("users")
+    suspend fun getEventUser() : MutableList<UserEvent>
 }
 
-object MarsApi {
-    val retrofitService: UserEventService by lazy { retrofit.create(UserEventService::class.java) }
+object UserEventApi {
+    val retrofitService: UserEventApiService by lazy { retrofit.create(UserEventApiService::class.java) }
 }

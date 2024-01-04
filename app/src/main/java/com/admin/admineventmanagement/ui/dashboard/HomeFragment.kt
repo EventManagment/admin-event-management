@@ -1,14 +1,16 @@
 package com.admin.admineventmanagement.ui.dashboard
 
 import android.graphics.Color
-import android.graphics.Typeface
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.admin.admineventmanagement.R
+import com.admin.admineventmanagement.adapter.UserEventAdapter
 import com.admin.admineventmanagement.databinding.FragmentHomeBinding
 import com.admin.admineventmanagement.viewmodel.ManagementViewModel
 import com.github.mikephil.charting.charts.PieChart
@@ -25,13 +27,6 @@ class HomeFragment : Fragment() {
     private val viewModel: ManagementViewModel by viewModels()
 
     private lateinit var pieChart: PieChart
-    protected var tfRegular: Typeface? = null
-    protected var tfLight: Typeface? = null
-    private val statValues: ArrayList<Float> = ArrayList()
-
-    protected val statsTitles = arrayOf(
-        "Orders", "Inventory"
-    )
 
     private val calendar: Calendar = Calendar.getInstance()
     private val year = calendar.get(Calendar.YEAR)
@@ -48,13 +43,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         pieChart = binding.pieChart
+        binding.recyclerView.adapter = UserEventAdapter()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewmodel = viewModel
+        }
 
         val entries: MutableList<PieEntry> = ArrayList()
         entries.add(PieEntry(30f, "Entry 1"))

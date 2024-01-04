@@ -17,4 +17,5 @@
   <string name="success">Success</string>
   <string name="profile">Profile</string>
 	<string name="setting">Setting</string>
+  <string name="network_permission">Please Allow your network permission</string>
 </resources>

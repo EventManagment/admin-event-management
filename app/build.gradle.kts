@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.kapt")
+//    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -44,6 +45,7 @@ android {
 
 dependencies {
     val nav_version = "2.7.5"
+    val room_version = "2.6.1"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -66,8 +68,6 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.3.0")
     implementation("androidx.camera:camera-view:1.3.0")
     implementation("androidx.camera:camera-core:1.3.0")
-    // Anychart
-//    implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
     // MpChart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     // ViewModel
@@ -80,4 +80,16 @@ dependencies {
     // For control over item selection of both touch and mouse driven selection
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
 
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+// optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+//
+//    implementation("com.google.dagger:hilt-android:2.44")
+//    kapt("com.google.dagger:hilt-android-compiler:2.44")
 }
+
+//kapt {
+//    correctErrorTypes = true
+//}

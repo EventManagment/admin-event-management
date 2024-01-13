@@ -4,8 +4,11 @@
     <dimen name="font_size_20_sp">20sp</dimen>
     <dimen name="card_height">300dp</dimen>
     <dimen name="card_height_100">100dp</dimen>
-    <dimen name="nav_bar_height">75dp</dimen>
-    <dimen name="icon_size">50dp</dimen>
+    <dimen name="nav_bar_height">65dp</dimen>
+    <dimen name="icon_size">35dp</dimen>
 	<dimen name="profile_size">100dp</dimen>
     <dimen name="container">200dp</dimen>
+	<dimen name="item_spacing">8dp</dimen>
+	<dimen name="container_500">500dp</dimen>
+	<dimen name="editText">50dp</dimen>
 </resources>

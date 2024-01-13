@@ -16,6 +16,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.admin.admineventmanagement.R
 import com.admin.admineventmanagement.databinding.FragmentScanBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -158,6 +160,7 @@ class ScanFragment : Fragment() {
         binding.result.text = qrCodeData
         // Navigate or perform further actions based on the scanned data
         // For example, you can use findNavController().navigate(...) to navigate to another fragment
+//        findNavController().navigate(R.id.homeFragment)
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.success))
             .setMessage(getString(R.string.scan_success, qrCodeData))

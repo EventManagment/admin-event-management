@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.admin.admineventmanagement.data.models.UserEvent
 import com.admin.admineventmanagement.databinding.UserEventListBinding
-import com.admin.admineventmanagement.model.UserEvent
 
 class UserEventAdapter : ListAdapter<UserEvent,
         UserEventAdapter.UserEventViewHolder>(DiffCallback)  {
@@ -27,7 +27,7 @@ class UserEventAdapter : ListAdapter<UserEvent,
      */
     companion object DiffCallback : DiffUtil.ItemCallback<UserEvent>() {
         override fun areItemsTheSame(oldItem: UserEvent, newItem: UserEvent): Boolean {
-            return oldItem.email == newItem.email
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: UserEvent, newItem: UserEvent): Boolean {

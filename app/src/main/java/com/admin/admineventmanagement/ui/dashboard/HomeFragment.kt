@@ -8,15 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.admin.admineventmanagement.R
 import com.admin.admineventmanagement.adapter.UserEventAdapter
+import com.admin.admineventmanagement.custom.style.SpaceItemDecoration
 import com.admin.admineventmanagement.databinding.FragmentHomeBinding
 import com.admin.admineventmanagement.viewmodel.ManagementViewModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.*
-
 
 /**
  * A simple [Fragment] subclass.
@@ -24,7 +24,7 @@ import com.github.mikephil.charting.data.*
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
-    private val viewModel: ManagementViewModel by viewModels()
+    private val viewModel: ManagementViewModel by activityViewModels()
 
     private lateinit var pieChart: PieChart
 
@@ -45,6 +45,9 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         pieChart = binding.pieChart
+
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.item_spacing) // Define the desired spacing in pixels
+        binding.recyclerView.addItemDecoration(SpaceItemDecoration(spacingInPixels))
         binding.recyclerView.adapter = UserEventAdapter()
         return binding.root
     }
@@ -58,9 +61,13 @@ class HomeFragment : Fragment() {
         }
 
         val entries: MutableList<PieEntry> = ArrayList()
-        entries.add(PieEntry(30f, "Entry 1"))
-        entries.add(PieEntry(20f, "Entry 2"))
-        entries.add(PieEntry(50f, "Entry 3"))
+//        entries.add(PieEntry(viewModel.userJoin.value?.size!!.toFloat(), "User Join"))
+//        entries.add(PieEntry(viewModel.userAbsent.value?.size!!.toFloat(), "User Absent"))
+//        entries.add(PieEntry(viewModel.userJoinAndRegister.value?.size!!.toFloat(), "User Join and Register"))
+
+        entries.add(PieEntry(30f, "UserJoin"))
+        entries.add(PieEntry(20f, "UserAbsent"))
+        entries.add(PieEntry(50f, "UserJoin&Register"))
 
         val dataSet = PieDataSet(entries, null)
         dataSet.isHighlightEnabled = true
@@ -84,6 +91,7 @@ class HomeFragment : Fragment() {
             setEntryLabelTextSize(16f)
             setHoleColor(Color.WHITE)
             centerText = "Attendance: 150"
+//            centerText = viewModel.userJoin.value?.size.toString()
 //            animateY(1000, Easing.EaseInOutQuad)
         }
 

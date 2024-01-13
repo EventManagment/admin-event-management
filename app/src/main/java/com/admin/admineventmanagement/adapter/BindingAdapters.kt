@@ -3,7 +3,7 @@ package com.admin.admineventmanagement.adapter
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.admin.admineventmanagement.model.UserEvent
+import com.admin.admineventmanagement.data.models.UserEvent
 
 @BindingAdapter("username")
 fun bindUsername(textView: TextView, username: String?) {

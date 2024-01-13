@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/admineventmanagement.iml" filepath="$PROJECT_DIR$/.idea/modules/admineventmanagement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/admineventmanagement.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adminevent.iml" filepath="$PROJECT_DIR$/.idea/modules/adminevent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/adminevent.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/adminevent.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/adminevent.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/adminevent.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/adminevent.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/adminevent.app.unitTest.iml" />
     </modules>
   </component>
 </project>

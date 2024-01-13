@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "admineventmanagement"
+rootProject.name = "adminevent"
 include(":app")

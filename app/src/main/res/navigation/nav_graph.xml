@@ -29,4 +29,9 @@
         android:name="com.admin.admineventmanagement.ui.dashboard.UserProfileFragment"
         android:label="UserProfileFragment"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.admin.admineventmanagement.ui.dashboard.EditProfileFragment"
+        android:label="editProfileFragment"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>
